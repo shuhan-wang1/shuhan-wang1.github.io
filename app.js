@@ -49,7 +49,7 @@
     uclDegree: '机器学习理学硕士 · Distinction expected <span class="expected">· 预计 2026 年 12 月毕业</span>',
     uclDescription: '硕士论文研究软件工程智能体的时序路由。<br>硕士论文导师：Ilija Bogunovic。',
     manchesterDegree: '数学与物理荣誉理学学士', manchesterDescription: '一等荣誉学位。', toolkitLabel: '常用工具',
-    labAssistantLabel: 'FIG. 02 / 实验助理', labAssistantCaption: '<strong>多多</strong>，家里的另一个智能体，兼任我的常驻 Reviewer 2。', catTooltip: '多多正在监工。',
+    labAssistantLabel: 'FIG. 02 / 实验助理', labAssistantCaption: '<strong>多多</strong>，家里的另一个智能体，兼任我的常驻 Reviewer 2。',
     contactEyebrow: '04 / 保持联系', contactTitle: '好问题，<br>值得一起 <em>探索。</em>',
     contactDescription: '欢迎交流世界模型、科学发现，<br>或讨论科研合作的可能。', copyEmail: '复制邮箱',
     footerNote: '因好奇而构建，由多多监工。更新于 2026 年 10 月。', backTop: '回到顶部 ↑', dialogLabel: '项目介绍', discussProject: '交流这个项目'
