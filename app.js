@@ -21,7 +21,7 @@
     wmRole: '研究助理 <span class="role-dot">·</span> 香港城市大学 <span class="role-dot">·</span> 2026 年 10 月起',
     tagWorldModels: '世界模型', tagGroundTruth: '已知真实状态', tagDiagnostics: '诊断设计',
     catDiscovery: '科学发现与持续学习', qftQuestion: '智能体能通过实验发现陌生系统的规律吗？',
-    qftDescription: '一个研究科学发现与持续学习的交互式基准。当前主线是简洁的珠子机实验室：智能体选择实验、观察带噪声的结果，并预测尚未尝试的情况。',
+    qftDescription: '关于科学发现与持续学习的独立研究：智能体如何把证据变成解释，再将有用的经验带到陌生问题中。',
     qftInsight: '我关心智能体如何修订假设，以及学到的知识能否帮助下一次探索。项目尚未发表，目前仅公开概念介绍。',
     qftRole: '独立研究 <span class="role-dot">·</span> 未发表 · 进行中', tagSMC: '持续学习', tagExperiment: '实验设计', details: '项目简介',
     catRL: '世界模型与持续强化学习', climbQuestion: '帮助世界模型智能体获得下一个技能。',
@@ -36,7 +36,7 @@
     catTrajectory: '轨迹条件结果预测', temporalTitle: '时序路由', temporalQuestion: '智能体的部分轨迹，究竟告诉了我们什么？',
     temporalDescription: '硕士论文研究紧凑的轨迹条件价值估计；后续研究进一步区分题目难度识别，与对同一题目不同尝试的排序能力。',
     temporalInsight: '早期总体判别可能掩盖弱题内判别。在已评估的设置下，晚期信号带来有限的选择与剪枝收益。',
-    temporalRole: '硕士论文 <span class="role-dot">·</span> UCL', tagTemporal: '时序建模', tagAudits: '实证审计',
+    temporalRole: '硕士论文 <span class="role-dot">·</span> UCL <span class="role-dot">·</span> 论文成绩：77.5/100', tagTemporal: '时序建模', tagAudits: '实证审计',
     catTheory: '几何与大模型量化', ropeQuestion: '一个几何最优解，以及它的实证边界。',
     ropeDescription: '完整刻画与 RoPE 可交换的旋转族，并为限定的方差代理目标推导闭式最优角；通过实验检验这种结构能否改善动态 4-bit 量化。',
     ropeInsight: '所测逐对旋转未优于全头 Hadamard。研究分析了代理目标、混合支持与量化器定标统计量之间的失配。',
@@ -100,7 +100,7 @@
       link.textContent = language === 'zh' ? zhLabel : en;
       body.append(link);
     }
-    note.sections.forEach(([heading, description]) => {
+    (projectNotes[currentProject].overview?.[language] ?? note.sections).forEach(([heading, description]) => {
       const h3 = document.createElement('h3');
       const p = document.createElement('p');
       h3.textContent = heading;

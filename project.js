@@ -11,12 +11,12 @@
     const zh = language === 'zh';
     const text = project[language];
     document.documentElement.lang = zh ? 'zh-CN' : 'en';
-    document.title = `${text.title} — Shuhan Wang`;
-    document.querySelector('meta[name="description"]').content = text.sections[0][1];
+    document.title = `${text.headline || text.title} — Shuhan Wang`;
+    document.querySelector('meta[name="description"]').content = text.summary || text.sections[0][1];
     const set = (id, value) => { const node = document.getElementById(id); if (node) node.textContent = value; };
-    set('page-title', text.title); set('page-summary', text.sections[0][1]);
+    set('page-title', text.headline || text.title); set('page-summary', text.summary || text.sections[0][1]);
     set('skip', zh ? '跳至正文' : 'Skip to content');
-    set('page-kicker', zh ? '研究 / 项目笔记' : 'RESEARCH / PROJECT NOTES');
+    set('page-kicker', project.blog ? (zh ? 'OPENQFT / 研究随笔' : 'OPENQFT / RESEARCH JOURNAL') : (zh ? '研究 / 项目笔记' : 'RESEARCH / PROJECT NOTES'));
     set('back-home', zh ? '所有项目' : 'All projects');
     document.getElementById('back-home').href = `../../?lang=${language}#research`;
     set('project-language', zh ? 'EN' : '中文');
@@ -25,8 +25,16 @@
     document.querySelector('.project-toc').setAttribute('aria-label', zh ? '本页内容' : 'On this page');
     text.sections.forEach(([heading, body], i) => {
       document.querySelector(`#section-${i} h2`).textContent = heading;
-      document.querySelector(`#section-${i} p`).textContent = body;
+      const prose = document.querySelector(`#section-${i} .section-prose`);
+      prose.replaceChildren(...body.split('\n\n').map(part => {
+        const p = document.createElement('p'); p.textContent = part; return p;
+      }));
       document.querySelector(`.project-toc a[href="#section-${i}"]`).textContent = heading;
+    });
+    document.querySelectorAll('[data-blog-figure]').forEach(figure => {
+      const item = project.figures[Number(figure.dataset.blogFigure)][language];
+      figure.querySelector('img').alt = item.alt;
+      figure.querySelector('figcaption').textContent = item.caption;
     });
     document.querySelectorAll('.project-resources a').forEach((link, i) => {
       if (i < project.links.length) link.textContent = project.links[i][zh ? 1 : 0];
@@ -37,7 +45,7 @@
     const baseline = document.querySelector('.result-row span');
     if (baseline) baseline.textContent = zh ? '同预算基线' : 'Matched baseline';
     set('show-thesis', zh ? '在本页阅读论文' : 'Read thesis on this page');
-    set('reader-heading', zh ? '硕士论文' : 'MSc Thesis');
+    set('reader-heading', zh ? '硕士论文 · 77.5/100' : 'MSc Thesis · 77.5/100');
     set('reader-note', zh ? '可以在下方阅读论文，也可以通过上方 Google Drive 链接在新标签页打开。' : 'Read the dissertation here, or use the Google Drive link above to open it in a new tab.');
     set('updated', zh ? '更新于 2026 年 11 月' : 'Updated November 2026');
     set('related-title', zh ? '浏览其他项目' : 'Explore other projects');

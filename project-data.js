@@ -149,51 +149,63 @@ window.PROJECT_DATA = {
   "qft": {
     "en": {
       "title": "OpenQFT",
+      "headline": "Learning to discover. Learning from discovery.",
+      "summary": "Some thoughts on scientific discovery, useful experience, and what it means for an agent to keep learning.",
       "sections": [
         [
-          "The research question",
-          "Can an agent discover the rules of an unfamiliar system through experiments, then use what it learns in a new system? OpenQFT studies scientific discovery and continual learning in controlled, interactive environments."
+          "What should an agent learn from discovery?",
+          "I keep coming back to two questions. Can an agent work out something unfamiliar by choosing its own experiments? And when it encounters a new problem, does the earlier investigation make it a better learner?\n\nOpenQFT grew out of wanting to study these questions together. A successful investigation is interesting in its own right. I am even more interested in what survives it: a useful idea, a better question, or a habit of checking an explanation before trusting it."
         ],
         [
-          "The current direction",
-          "The project has moved from particle-physics simulators to a simpler bead-machine laboratory. An agent chooses experiments, observes noisy outcomes, and builds an explanation that must make predictions beyond the observations it has collected. The interface is deliberately simple, so the challenge comes from discovery rather than specialist terminology."
+          "An intuition from the history of science",
+          "One inspiration is the history of particle physics. Observations arrived before a complete explanation. Researchers had to look for regularities, ask what those regularities implied, and decide which observation might change the picture. An explanation earned its value by helping them anticipate something they had not yet seen.\n\nWhat interests me is this movement between evidence and explanation. Each discovery changes the questions that become worth asking. Experience can do more than supply another answer; it can change how the next investigation begins."
         ],
         [
-          "What I want to understand",
-          "I am interested in the connection between choosing useful experiments, revising hypotheses, and carrying knowledge between unfamiliar systems. A good explanation should help with a new prediction; a useful memory should help with a new investigation."
+          "Collecting evidence is only part of the work",
+          "Choosing an experiment and making sense of its outcome are different abilities. An agent can collect observations while still missing a useful explanation. It can also settle on a plausible story too early and keep gathering evidence that fits it.\n\nThe Terra study motivates a closer look at this distinction. The comparison below places Terra alongside a diagnostic reference analysis. That reference also receives additional information, so the gap does not isolate a reasoning deficit. It is a prompt to ask which parts of an investigation need help, rather than a claim that every answer was already available to the agent."
         ],
         [
-          "Current status",
-          "Active, unpublished research. The benchmark and manuscript are being developed. This page gives a conceptual introduction; the full protocol, hidden mechanisms, experimental results, and manuscript are not yet public."
+          "When experience helps—and when it gets in the way",
+          "A later investigation need not begin from an empty page. In the selected Terra comparison below, accumulated experience is associated with better performance. That is encouraging: something from an earlier investigation can be useful again.\n\nBut useful memory needs judgement. A good explanation can guide a new experiment; an untested assumption can guide it in the wrong direction. I want to understand how an agent can carry forward what it has learnt while staying willing to revise it. The figure is a descriptive preview, not a claim that memory helps every investigation."
         ],
         [
-          "My role",
-          "Independent research: environment and benchmark design, implementation, agent evaluation, and experimental analysis."
+          "The question I want to keep asking",
+          "For me, the exciting possibility is an agent whose experience improves the way it investigates. It notices when an explanation stops working, asks a more revealing question, and brings a useful idea to an unfamiliar problem.\n\nThat connects scientific discovery to continual learning: progress in one investigation becomes part of how the next one is approached. OpenQFT is where I am exploring that connection."
+        ],
+        [
+          "A research note, while the work develops",
+          "This is an intuition-led preview of independent, unpublished research. The figures are simplified views of selected Terra results, each on its own relative scale. They are not intended for quantitative comparison across figures. The experimental setup and full paper will be shared when the work is ready."
         ]
       ]
     },
     "zh": {
       "title": "OpenQFT",
+      "headline": "学会发现，也从发现中学习。",
+      "summary": "关于科学发现、有用的经验，以及智能体如何持续学习的一些思考。",
       "sections": [
         [
-          "研究问题",
-          "智能体能否通过实验发现陌生系统的规律，再把学到的知识用于新的系统？OpenQFT 在受控的交互环境中研究科学发现与持续学习。"
+          "智能体应该从发现中学到什么？",
+          "我一直在想两个问题：智能体能否通过自己选择的实验，理解一个陌生的系统？当它遇到新问题时，之前的探索会不会让它更善于学习？\n\nOpenQFT 源于把这两个问题放在一起研究的想法。完成一次探索本身很有意思，但我更关心探索之后留下了什么：一个有用的想法、一个更好的问题，或者在相信解释之前先检验它的习惯。"
         ],
         [
-          "当前方向",
-          "项目已从粒子物理模拟转向更简洁的珠子机实验室。智能体自主选择实验、观察带噪声的结果，并建立能够预测已有观测之外情况的解释。简洁的界面让挑战集中在发现本身，而非专业术语。"
+          "来自科学史的直觉",
+          "一个灵感来自粒子物理的发展史。观测往往先于完整的解释出现。研究者需要从中寻找规律，追问规律意味着什么，再决定什么样的新观测可能改变现有认识。一个解释的价值，体现在它能否帮助预见尚未观察到的东西。\n\n我感兴趣的是证据与解释之间的往返。每一次发现，都会改变接下来值得追问的问题。经验除了提供另一个答案，也可能改变下一次探索的起点。"
         ],
         [
-          "我想理解什么",
-          "我关心选择有用的实验、修订假设，以及在陌生系统之间积累知识如何联系起来。好的解释应当帮助做出新的预测；有用的记忆应当帮助开展下一次探索。"
+          "收集证据，只是工作的一部分",
+          "选择实验和理解结果，是两种不同的能力。智能体可能积累了许多观测，却仍然错过一个有用的解释；也可能过早相信一个看似合理的故事，此后只收集符合它的证据。\n\nTerra 的研究让我想进一步区分这些环节。下图将 Terra 与一个诊断性的参考分析进行对照。参考分析还获得了额外信息，因此差距不能单独归因于推理能力。它促使我追问探索中的哪些环节需要帮助，而不是断言答案早已完整地呈现在智能体面前。"
         ],
         [
-          "当前状态",
-          "正在开展、尚未发表的研究。基准与论文仍在开发中。本页仅作概念介绍；完整协议、隐藏机制、实验结果和论文全文暂未公开。"
+          "经验何时有用，又何时会妨碍探索？",
+          "后一次探索不必从空白开始。在下方选取的 Terra 对比中，积累经验时的表现更好。这是一个令人感兴趣的信号：之前的探索确实可能留下一些再次派得上用场的东西。\n\n但如何使用记忆，同样需要判断。好的解释可以指引下一次实验，未经检验的假设也可能把探索带偏。我想理解的是：智能体如何带着已有知识继续前进，同时保留修订它的意愿。这张图只是描述性的研究预览，并不意味着记忆会帮助每一次探索。"
         ],
         [
-          "我的角色",
-          "独立研究：环境与基准设计、代码实现、智能体评测和实验分析。"
+          "我想继续追问的问题",
+          "让我期待的，是一个能让经验改善自身探索方式的智能体。它能注意到解释何时不再适用，提出更有启发性的问题，也能把一个有用的想法带到陌生的问题中。\n\n这把科学发现与持续学习联系起来：一次探索中的进展，成为下一次探索方式的一部分。OpenQFT 是我探索这条联系的研究项目。"
+        ],
+        [
+          "写在研究进行中",
+          "这是尚未发表的独立研究的一篇直觉笔记。配图是选取 Terra 结果制作的简化公开版本，每张图采用各自的相对尺度，不用于跨图定量比较。实验设计与完整论文将在研究准备好后公开。"
         ]
       ]
     },
@@ -212,6 +224,63 @@ window.PROJECT_DATA = {
         "修订假设",
         "预测新情况"
       ]
+    ],
+    "blog": true,
+    "overview": {
+      "en": [
+        [
+          "The question",
+          "Can an agent learn to investigate an unfamiliar system, and use that experience to approach the next problem better?"
+        ],
+        [
+          "Research note",
+          "The full page shares the intuition behind OpenQFT and simplified views of selected Terra results."
+        ],
+        [
+          "Status",
+          "Independent, unpublished research. Technical details and the manuscript are not public."
+        ]
+      ],
+      "zh": [
+        [
+          "研究问题",
+          "智能体能否学会探索陌生系统，并用这段经验更好地面对下一个问题？"
+        ],
+        [
+          "研究笔记",
+          "完整页面分享 OpenQFT 背后的直觉，以及选取 Terra 结果制作的简化公开图。"
+        ],
+        [
+          "状态",
+          "独立开展、尚未发表的研究，技术细节与论文全文暂未公开。"
+        ]
+      ]
+    },
+    "figures": [
+      {
+        "after": 2,
+        "src": "assets/openqft/terra-evidence.png",
+        "en": {
+          "alt": "Relative bars for Terra and a reference analysis with additional information. The reference bar is higher.",
+          "caption": "Selected Terra result: interpreting observations. Bars show descriptive means on a relative scale. The reference analysis has additional information; this is a diagnostic comparison, not an equal-information baseline. Quantitative scales and experimental details are withheld in this public preview."
+        },
+        "zh": {
+          "alt": "Terra 与获得额外信息的参考分析的相对柱状图，参考分析的柱更高。",
+          "caption": "选取的 Terra 结果：理解观测。柱形以相对尺度展示描述性均值。参考分析具有额外信息；这是诊断性对照，并非信息条件相同的基线比较。此公开预览省略定量尺度与实验细节。"
+        }
+      },
+      {
+        "after": 3,
+        "src": "assets/openqft/terra-experience.png",
+        "en": {
+          "alt": "Relative bars for Terra without and with accumulated experience. The bar with experience is higher.",
+          "caption": "Selected Terra result: carrying experience forward. Descriptive means from matched conditions, shown on a separate relative scale. The version with accumulated experience performs better in this comparison. This preview omits quantitative scales and experimental details; it does not establish a general memory benefit."
+        },
+        "zh": {
+          "alt": "Terra 未积累与积累经验时的相对柱状图，积累经验时的柱更高。",
+          "caption": "选取的 Terra 结果：让经验延续。对匹配条件下的描述性均值，使用本图独立的相对尺度展示。积累经验的版本在这组对比中表现更好。预览省略定量尺度和实验细节，不代表记忆具有普遍收益。"
+        }
+      }
     ]
   },
   "temporal": {
@@ -220,7 +289,7 @@ window.PROJECT_DATA = {
       "sections": [
         [
           "MSc dissertation",
-          "Encoder-Based Temporal Routing for Software Engineering Agents: An Empirical Study of Trajectory-Conditioned Value Estimation. Dissertation supervisor: Professor Ilija Bogunovic (UCL)."
+          "Encoder-Based Temporal Routing for Software Engineering Agents: An Empirical Study of Trajectory-Conditioned Value Estimation. Dissertation supervisor: Professor Ilija Bogunovic (UCL). Thesis mark: 77.5/100."
         ],
         [
           "The model",
@@ -241,7 +310,7 @@ window.PROJECT_DATA = {
       "sections": [
         [
           "硕士论文",
-          "Encoder-Based Temporal Routing for Software Engineering Agents: An Empirical Study of Trajectory-Conditioned Value Estimation。UCL 硕士论文，硕士论文导师为 Professor Ilija Bogunovic。"
+          "Encoder-Based Temporal Routing for Software Engineering Agents: An Empirical Study of Trajectory-Conditioned Value Estimation。UCL 硕士论文，硕士论文导师为 Professor Ilija Bogunovic。 硕士论文成绩：77.5/100。"
         ],
         [
           "模型",
