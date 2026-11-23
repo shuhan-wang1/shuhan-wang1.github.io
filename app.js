@@ -27,7 +27,7 @@
     catRL: '世界模型与持续强化学习', climbQuestion: '帮助世界模型智能体获得下一个技能。',
     climbDescription: 'UCL「开放性与通用智能」课程的小组研究项目。我在 Craftax-Symbolic 中为 DreamerV3 提出并实现了三项干预：动作的软可行性掩码、基于新颖性的内在奖励，以及结构化回放。',
     climbResult: '平均成就达成率 · Craftax-Symbolic',
-    climbScope: '10M 步，3 个种子，末 200 回合；对照为同预算 50:50 回放基线。消融实验显示，软掩码是单独贡献最大的组件。',
+    climbScope: '10M 步，3 个种子，最终 checkpoint 指标；对照为同预算 50:50 回放基线。消融实验显示，软掩码是单独贡献最大的组件。',
     climbRole: '项目负责人 <span class="role-dot">·</span> 课程报告第一作者', tagReplay: '结构化回放', code: '代码', report: '报告',
     catRouting: '多轮智能体模型路由', sweQuestion: '编程智能体何时应该切换模型？',
     sweDescription: '基于部分执行轨迹进行成本敏感模型路由的合作研究。我在容器中运行 SWE-bench / SWE-Smith 官方评测，采集带逐步成本标注的多模型轨迹，并发布为公开的 Hugging Face 数据集。',

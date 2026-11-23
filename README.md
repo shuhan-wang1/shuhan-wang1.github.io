@@ -6,6 +6,7 @@ Static GitHub Pages site, published from `main` at the repository root.
 - `projects.json`: public project content in English and Chinese, resource links, and conceptual figure labels.
 - `tools/build-projects.py`: generates `project-data.js` and the static pages under `projects/`.
 - `project.js`, `project.css`: detail-page language switching and layout.
+- `climb.js`, `climb.css`, `tools/templates/mask-demo.html`: illustrative soft/hard mask probability demo on the CLIMB page.
 
 After editing project content, run `python3 tools/build-projects.py` and commit both the source data and generated files. Preview with `python3 -m http.server 8765`.
 

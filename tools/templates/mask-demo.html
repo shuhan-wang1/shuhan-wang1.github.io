@@ -1,0 +1,14 @@
+<section class="mask-demo" id="mask-demo" aria-labelledby="mask-demo-title">
+<h3 id="mask-demo-title" data-mask-label="title">Try the soft mask</h3>
+<div class="mask-controls">
+<label for="mask-wood"><span data-mask-label="wood">Wood in the context</span><output id="mask-wood-value" class="mask-value" for="mask-wood">1.95</output><input id="mask-wood" type="range" min="0" max="4" step="0.05" value="1.95"></label>
+<label><input id="mask-placeable" type="checkbox" checked><span data-mask-label="placeable">Facing tile is placeable</span></label>
+<label for="mask-strength"><span data-mask-label="strength">Penalty strength</span><output id="mask-strength-value" class="mask-value" for="mask-strength">5.0</output><input id="mask-strength" type="range" min="0" max="10" step="0.5" value="5"></label>
+</div>
+<div aria-live="polite" aria-atomic="true"><dl class="mask-readouts"><div><dt data-mask-label="deficit">PLACE_TABLE deficit</dt><dd id="mask-deficit">0.05</dd></div><div><dt data-mask-label="bias">Soft logit bias</dt><dd id="mask-bias">-0.25</dd></div></dl>
+<p class="mask-prob-title" data-mask-label="probability">PLACE_TABLE probability</p>
+<div class="mask-prob-row"><span data-mask-label="raw">No mask</span><div class="mask-track"><span style="width:33.333%"></span></div><strong>33.3%</strong></div>
+<div class="mask-prob-row"><span data-mask-label="soft">Soft mask</span><div class="mask-track"><span id="mask-soft-bar" style="width:28.0%"></span></div><strong id="mask-soft-prob">28.0%</strong></div>
+<div class="mask-prob-row"><span data-mask-label="hard">Hard mask</span><div class="mask-track"><span id="mask-hard-bar" style="width:0%"></span></div><strong id="mask-hard-prob">0.0%</strong></div>
+</div><p class="mask-hint" data-mask-label="near">Try wood = 1.95: the deficit is small, so a soft mask applies a mild penalty. A hard mask removes the action whenever the deficit is positive.</p><p class="mask-note" data-mask-label="note">Illustration only: three actions start with equal logits. The other two have no penalty. This is not the trained Craftax policy or an experimental result.</p>
+</section>

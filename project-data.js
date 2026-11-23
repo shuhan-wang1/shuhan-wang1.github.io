@@ -133,51 +133,79 @@ window.PROJECT_DATA = {
   "climb": {
     "en": {
       "title": "CLIMB",
+      "headline": "A soft constraint on what an agent imagines.",
+      "summary": "How action feasibility, intrinsic rewards and structured replay help DreamerV3 progress through Craftax-Symbolic.",
       "sections": [
         [
           "The project",
-          "A four-person group research project for UCL's Open-Endedness and General Intelligence module, which I led. We wanted DreamerV3 to reach deeper achievements in Craftax-Symbolic, a game with a long technology tree."
+          "CLIMB is a four-person research project for UCL’s Open-Endedness and General Intelligence module. I led the project and proposed and implemented its three interventions: a soft action-feasibility mask, episodic spatial and inventory novelty rewards, and novelty–learnability–uniform (NLU) replay.\n\nThe goal is to help a world-model agent progress through Craftax’s technology tree. The mask addresses actions whose immediate prerequisites are missing; novelty rewards encourage new experience, and replay changes which experience the agent learns from."
         ],
         [
-          "What I proposed and implemented",
-          "Three interventions, each changing what experience the agent collects or learns from: a feasibility mask on actions, episodic spatial and inventory novelty rewards, and novelty–learnability–uniform replay. Hand-specified feasibility rules use the environment's context during interaction, and a learned head's predictions from the RSSM latent state during imagination."
+          "What the mask knows",
+          "Craftax has 43 discrete actions. The implementation attaches hand-written prerequisite rules to 37 of them. At each real environment step, an extractor provides a 46-dimensional context: inventory counts, player attributes, nearby workstations, the facing tile, and level-related flags.\n\nFor example, PLACE_TABLE requires at least two units of wood and a placeable tile ahead. A rule checks immediate feasibility, not whether the action is strategically useful. Actions without a rule receive no mask bias. This is domain knowledge supplied through privileged simulator state during interaction; it is not a mask learned from pixels alone."
         ],
         [
-          "A design decision",
-          "During imagination, the mask relies on a learned estimate of the game state. I made it discourage apparently infeasible actions rather than block them, because errors in the model or its readout could otherwise stop the policy from considering a valid action. That concern, together with the loss of fidelity I noticed in Dreamer's RSSM over long open-loop rollouts, led to my current work on diagnosing world models."
+          "From a failed prerequisite to an action probability",
+          "For each action, the rules add up a non-negative deficit d(a,c). A missing quantity contributes max(0, required − available). An unsatisfied Boolean or threshold condition contributes one. If every prerequisite is satisfied, the deficit is zero.\n\nThe soft mask subtracts λ × d(a,c) from that action’s policy logit before renormalising the distribution: πmask(a|s) = softmax(ℓ(a) − λd(a,c)). The reported default is λ = 5. This changes action selection; it does not add resources or guarantee success.\n\nFor PLACE_TABLE, d = max(0, 2 − wood) + 1[the facing tile is not placeable]. With one wood unit and a placeable tile, d = 1 and the logit penalty is −5. With two wood units, the penalty is zero. A finite penalty suppresses the action while retaining it in the mathematical distribution."
         ],
         [
-          "Results",
-          "Across 19 configurations and three seeds, the full method roughly doubled the achievements completed per episode compared with a matched 50:50 replay baseline: a mean achievement rate of 0.200 ± 0.005 versus 0.099 ± 0.008 at 10M steps, over the final 200 episodes. Ablations identify the soft mask as the main isolated contributor; they are not a complete test of interactions between the three components."
+          "The same rules, two sources of context",
+          "During real interaction, the mask reads the context extracted from the actual simulator state. During imagination, that state is unavailable. An auxiliary prediction head estimates the context from the RSSM’s deterministic and stochastic features; the same rules then operate on that estimate.\n\nThe head is a two-layer MLP predicting a diagonal Gaussian over the context. It learns by negative log-likelihood on observed context targets, using detached RSSM features. It is trained alongside the world model from the start. Imagination-time masking is enabled after a warmup: 50k environment steps in the report, including 10k prefill. The adjusted distribution is used both to sample imagined actions and in the actor loss."
         ],
         [
-          "My role",
-          "Project lead and first author of the course report. I proposed and implemented all three interventions."
+          "Why soft rather than hard?",
+          "A predicted resource count can fall just below a threshold: wood = 1.95 when an action requires 2. A hard mask applies a very large negative bias to any positive deficit, effectively removing that action. The soft mask gives a deficit of 0.05 and a penalty of only −0.25 at λ = 5.\n\nThis lets the agent keep considering a near-feasible action when the world model or context head makes a small error. It is a design motivation; the experiment also tests hard masking directly. In the 1M-step comparison, hard masking performs poorly (MAR 0.019 ± 0.011). Soft masking reaches 0.087 ± 0.004 versus the baseline’s 0.079 ± 0.003; that short-run difference is not statistically decisive with three seeds.\n\nThe example below isolates the probability calculation. It uses three equal-logit illustrative actions, not the trained 43-action policy, and is not experimental data."
+        ],
+        [
+          "What changes over longer training?",
+          "At 10M environment steps, the course report gives mean achievement rate (MAR) of 0.199 ± 0.005 for the full mask + intrinsic + NLU method, against 0.100 ± 0.006 for the matched 50:50 replay baseline. These are mean ± standard deviation across three seeds, for the final-checkpoint metrics in the report.\n\nThe mask-only ablation reaches 0.155 ± 0.008. Intrinsic rewards + NLU without the mask reaches 0.092 ± 0.001. The full method therefore benefits from more than the isolated mask effect in these tested settings. The ablations do not independently identify every interaction between spatial novelty, inventory novelty and replay.\n\nThe original report figure below shows achievement rate, distinct achievements unlocked and aggregate forgetting together. The full method has higher aggregate forgetting as well as more progress; this is not a claim of uniform improvement on every metric."
+        ],
+        [
+          "Which achievements become more reliable?",
+          "The report’s achievement heatmap shows how individual success rates evolve. It complements the aggregate MAR: the full method reaches and repeats a broader set of crafting and progression achievements than the baseline. The heatmap is descriptive evidence of what was achieved, not proof that one particular mechanism caused each improvement."
+        ],
+        [
+          "What I take from it",
+          "Feasibility knowledge can make exploration more productive, while imperfect predictions make absolute constraints risky. The reliance on imagined context is also one reason I became interested in diagnosing world models: when a constraint depends on a model’s internal estimate, we need to understand where that estimate becomes unreliable.\n\nAll reported results are from Craftax-Symbolic with three seeds. The feasibility extractor and rule set are environment-specific; transfer to environments without privileged state has not been established. Episodic return contains intrinsic bonuses in shaping-enabled configurations, so the page focuses on achievement metrics. I am project lead and first author of the course report."
         ]
       ]
     },
     "zh": {
       "title": "CLIMB",
+      "headline": "给智能体的想象加一道软约束。",
+      "summary": "动作可行性、内在奖励与结构化回放，如何帮助 DreamerV3 在 Craftax-Symbolic 中继续探索。",
       "sections": [
         [
           "项目",
-          "UCL「开放性与通用智能」课程的四人小组研究项目，由我牵头。我们希望让 DreamerV3 在 Craftax-Symbolic 这一科技树很长的游戏中达成更深层的成就。"
+          "CLIMB 是 UCL「开放性与通用智能」课程的四人研究项目。我牵头项目，并提出和实现了三项干预：动作可行性软掩码、基于空间与物品状态的回合内新颖性奖励，以及新颖性–可学习性–均匀（NLU）回放。\n\n目标是帮助世界模型智能体沿 Craftax 的科技树前进。Mask 处理缺少即时前提条件的动作；新颖性奖励鼓励新经验；回放则改变智能体从哪些经验中学习。"
         ],
         [
-          "我提出并实现的工作",
-          "三项干预，每一项都改变智能体采集或学习的经验：动作可行性掩码、基于空间与物品状态的回合内新颖性奖励，以及新颖性–可学习性–均匀（NLU）结构化回放。人工设定的可行性规则在真实交互中读取环境给出的上下文，在想象轨迹中则使用从 RSSM 隐状态学习的预测头的输出。"
+          "Mask 知道什么？",
+          "Craftax 有 43 个离散动作，实现为其中 37 个动作写了前提规则。真实环境每一步都从游戏状态提取一个 46 维上下文，包括物品数量、玩家属性、附近工作台、面向的格子，以及关卡相关标志。\n\n例如 PLACE_TABLE 需要至少两份木头，且面前的格子允许放置。规则检查的是动作当前能否执行，不是它在策略上是否有用。没有规则的动作不添加 mask 偏置。这使用了来自模拟器状态的特权信息和领域知识，并不是单靠像素学出的 mask。"
         ],
         [
-          "一个设计决定",
-          "在想象轨迹中，掩码依赖模型对游戏状态的估计。我让它抑制看似不可行的动作，而不是直接屏蔽，因为模型或读出的误差可能让策略错过一个有效动作。这一考虑，加上我注意到 Dreamer 的 RSSM 在较长开环预测中逐渐失真，引出了我现在诊断世界模型的研究。"
+          "前提不满足，如何改变动作概率？",
+          "规则为每个动作累加非负缺口 d(a,c)。缺少数量时，贡献 max(0, 所需数量 − 当前数量)；布尔条件或阈值条件不满足时，贡献 1。所有前提都满足，缺口就是零。\n\n软掩码在动作的策略 logit 上减去 λ × d(a,c)，再重新归一化概率：πmask(a|s) = softmax(ℓ(a) − λd(a,c))。报告默认 λ = 5。这改变的是动作选择，不会补足资源，也不保证动作成功。\n\nPLACE_TABLE 的缺口为 d = max(0, 2 − 木头数量) + 1[面前格子不可放置]。木头为 1、格子可放置时，d = 1，logit 惩罚为 −5；木头为 2 时惩罚为零。有限惩罚抑制动作，但在数学概率分布中仍保留它。"
         ],
         [
-          "结果",
-          "在 19 种配置、3 个种子的实验中，完整方法每回合完成的成就约为同预算 50:50 回放基线的两倍：10M 步时末 200 回合平均成就达成率为 0.200 ± 0.005，基线为 0.099 ± 0.008。消融实验显示，软掩码是单独贡献最大的组件；这些消融并不是对三项组件之间交互作用的完整检验。"
+          "同一套规则，两种上下文来源",
+          "真实交互时，mask 使用实际模拟器状态提取的上下文。想象过程中没有真实游戏状态，因此用辅助预测头，从 RSSM 的确定性与随机性特征估计上下文，再把同一套规则应用到估计值上。\n\n预测头是两层 MLP，为上下文预测对角高斯分布。训练目标是观测上下文的负对数似然，输入的 RSSM 特征使用停止梯度。它从开始就与世界模型同时训练。想象中的 mask 在 warmup 后启用：报告中为 50k 环境步，包含 10k prefill。调整后的分布既用于采样想象动作，也用于 actor 损失。"
         ],
         [
-          "我的角色",
-          "项目负责人，课程报告第一作者。三项干预均由我提出并实现。"
+          "为什么用 soft，而不是 hard？",
+          "预测的资源数量可能略低于门槛，例如动作需要 2 份木头，模型却预测为 1.95。Hard mask 对任何正缺口施加极大的负偏置，近似移除动作；soft mask 的缺口只有 0.05，在 λ = 5 时惩罚仅为 −0.25。\n\n这样，当世界模型或上下文预测头有小误差时，智能体仍能考虑一个接近可行的动作。这是设计动机，实验也直接比较了 hard mask。在 1M 步对比中，hard mask 表现很差（MAR 0.019 ± 0.011）；soft mask 为 0.087 ± 0.004，基线为 0.079 ± 0.003。三个种子下，这个短程差异尚不足以作显著结论。\n\n下方示例只展示概率计算，使用三个初始 logit 相同的示意动作，不是训练出的 43 动作策略，也不是实验数据。"
+        ],
+        [
+          "训练更久之后，发生了什么？",
+          "10M 环境步时，课程报告中完整的 mask + 内在奖励 + NLU 方法，其平均成就达成率（MAR）为 0.199 ± 0.005，同预算 50:50 回放基线为 0.100 ± 0.006。数值为三个种子的均值 ± 标准差，采用报告中的最终 checkpoint 指标。\n\n只用 mask 的消融为 0.155 ± 0.008；不使用 mask、只用内在奖励 + NLU 为 0.092 ± 0.001。因此在所测设置下，完整方法的收益超过单独 mask 的效果。这些消融没有分别识别空间新颖性、物品新颖性与回放之间的所有交互。\n\n下方报告原图同时展示成就达成率、解锁的不同成就数量与总体遗忘。完整方法在取得更多进展的同时，总体遗忘也更高；不能声称所有指标都改善。"
+        ],
+        [
+          "哪些成就变得更稳定？",
+          "报告的成就热图展示各个成就的成功率如何变化。它补充了总量 MAR：相比基线，完整方法能触及并反复完成更多合成与进阶成就。热图描述达成了什么，并不单独证明每项改善由哪一种机制引起。"
+        ],
+        [
+          "我从中学到什么？",
+          "可行性知识可能让探索更有效，而预测的不完美让绝对约束带来风险。对想象上下文的依赖，也是我后来研究世界模型诊断的动机之一：当约束取决于模型的内部估计时，我们需要理解这个估计在哪里不再可靠。\n\n所有报告结果都来自 Craftax-Symbolic、三个种子。可行性提取器和规则针对该环境设计，尚未验证在没有特权状态的环境中的迁移。加入内在奖励的配置，其回合 return 包含奖励塑形，因此本页主要使用成就指标。我是项目负责人及课程报告第一作者。"
         ]
       ]
     },
@@ -207,6 +235,86 @@ window.PROJECT_DATA = {
         "回放",
         "学习"
       ]
+    ],
+    "blog": true,
+    "maskDemo": true,
+    "kicker": {
+      "en": "CLIMB / METHOD & RESULTS",
+      "zh": "CLIMB / 方法与结果"
+    },
+    "overview": {
+      "en": [
+        [
+          "The mechanism",
+          "Hand-written rules turn a context vector into per-action deficits. The soft mask subtracts λ × deficit from policy logits. Real interaction uses simulator context; imagination uses a learned RSSM context head."
+        ],
+        [
+          "Why soft",
+          "A slightly wrong imagined resource count can make a hard mask remove a valid action. A graded logit penalty leaves room for prediction error. The full page includes an interactive example."
+        ],
+        [
+          "Report results",
+          "At 10M steps, MAR is 0.199 ± 0.005 for the full method, 0.155 ± 0.008 for mask only, and 0.100 ± 0.006 for the matched baseline (three seeds). Original report figures are on the full page."
+        ]
+      ],
+      "zh": [
+        [
+          "机制",
+          "人工规则将上下文变成每个动作的可行性缺口。Soft mask 在策略 logit 上减去 λ × 缺口。真实交互用模拟器上下文，想象中用学习到的 RSSM 上下文预测头。"
+        ],
+        [
+          "为什么用 soft",
+          "想象中的资源数量稍有偏差，hard mask 就可能移除本来可行的动作。分级的 logit 惩罚给预测误差留出空间，完整页面包含交互示例。"
+        ],
+        [
+          "报告结果",
+          "10M 步时，完整方法 MAR 为 0.199 ± 0.005，只用 mask 为 0.155 ± 0.008，同预算基线为 0.100 ± 0.006（三个种子）。报告原图见完整页面。"
+        ]
+      ]
+    },
+    "figures": [
+      {
+        "after": 4,
+        "src": "assets/climb/ablations-1m.png",
+        "width": 2070,
+        "height": 900,
+        "en": {
+          "alt": "Original report Figure 9: 1M-step ablations. Soft mask MAR is about 0.087; hard mask about 0.019; baseline about 0.079. Three panels show MAR, achievements unlocked and forgetting.",
+          "caption": "Course report, original Figure 9. Short-run ablations at 1M environment steps; error bars are ±1 standard deviation across three seeds. Soft vs baseline is not statistically decisive at this budget. The hard-mask result is much worse. This figure is separate from the 10M comparison below."
+        },
+        "zh": {
+          "alt": "报告原图 Figure 9：1M 步消融。Soft mask MAR 约 0.087，hard mask 约 0.019，基线约 0.079。三个面板为 MAR、解锁成就数与遗忘。",
+          "caption": "课程报告原图 Figure 9。1M 环境步的短程消融，误差条为三个种子的 ±1 标准差。此预算下 soft 与基线的差异尚不显著，hard mask 的结果明显更差。本图与下方 10M 对比的预算不同。"
+        }
+      },
+      {
+        "after": 5,
+        "src": "assets/climb/training-10m.png",
+        "width": 2051,
+        "height": 680,
+        "en": {
+          "alt": "Original report Figure 1: 10M-step training curves for full CLIMB, baseline, craft variant, mask only, and intrinsic plus NLU without masking. Full method nearly doubles baseline MAR.",
+          "caption": "Course report, original Figure 1. Extended training to 10M environment steps; lines and bands show mean ± standard deviation over three seeds. Panels: mean achievement rate, distinct achievements unlocked, and aggregate forgetting. Full method: 0.199 ± 0.005 MAR; mask only: 0.155 ± 0.008; matched baseline: 0.100 ± 0.006."
+        },
+        "zh": {
+          "alt": "报告原图 Figure 1：完整 CLIMB、基线、craft 变体、只用 mask，以及不用 mask 的内在奖励 + NLU 的 10M 步曲线，完整方法 MAR 约为基线两倍。",
+          "caption": "课程报告原图 Figure 1。训练至 10M 环境步，曲线与阴影为三个种子的均值 ± 标准差。三个面板为 MAR、解锁的不同成就数和总体遗忘。完整方法 MAR 0.199 ± 0.005；只用 mask 0.155 ± 0.008；同预算基线 0.100 ± 0.006。"
+        }
+      },
+      {
+        "after": 6,
+        "src": "assets/climb/achievement-heatmap.png",
+        "width": 1955,
+        "height": 2975,
+        "en": {
+          "alt": "Original report Figure 15: per-achievement success-rate heatmaps over 10M steps for full CLIMB, baseline, craft variant, mask only, and intrinsic plus NLU.",
+          "caption": "Course report, original Figure 15. Per-achievement success rates over 10M steps, averaged across three seeds. Rows follow the report’s technology-tier ordering. Open the image at full size to read individual achievement labels. Displayed achievement rows differ by configuration; compare named achievements rather than row positions."
+        },
+        "zh": {
+          "alt": "报告原图 Figure 15：完整 CLIMB、基线、craft 变体、只用 mask、内在奖励 + NLU 在 10M 步中的逐成就成功率热图。",
+          "caption": "课程报告原图 Figure 15。三个种子的逐成就成功率均值，横轴至 10M 步，行按报告的科技层级排序。可打开原尺寸图片查看各成就标签。 不同配置展示的成就行并不完全相同，应按成就名称对照，而非直接按行位置比较。"
+        }
+      }
     ]
   },
   "qft": {

@@ -49,7 +49,7 @@
     });
     document.querySelectorAll('.concept-flow li').forEach((li, i) => { li.textContent = project.flow[zh ? 1 : 0][i]; });
     set('concept-caption', zh ? '项目概念示意，非实验数据。' : 'Conceptual sketch of the project; not experimental data.');
-    set('result-caption', zh ? '平均成就达成率 · Craftax-Symbolic · 10M 步 · 3 个种子 · 末 200 回合。对照为同预算 50:50 回放基线。数值来自课程报告。' : 'Mean achievement rate · Craftax-Symbolic · 10M steps · 3 seeds · final 200 episodes. Matched 50:50 replay baseline. Values reproduced from the course report.');
+    set('result-caption', zh ? '平均成就达成率 · Craftax-Symbolic · 10M 步 · 3 个种子 · 最终 checkpoint。对照为同预算 50:50 回放基线。数值来自课程报告。' : 'Mean achievement rate · Craftax-Symbolic · 10M steps · 3 seeds · final checkpoint. Matched 50:50 replay baseline. Values reproduced from the course report.');
     const baseline = document.querySelector('.result-row span');
     if (baseline) baseline.textContent = zh ? '同预算基线' : 'Matched baseline';
     set('show-thesis', zh ? '在本页阅读论文' : 'Read thesis on this page');
@@ -59,6 +59,7 @@
     set('related-title', zh ? '浏览其他项目' : 'Explore other projects');
     document.querySelectorAll('[data-related]').forEach(a => { a.textContent = data[a.dataset.related][language].title; a.href = `../${data[a.dataset.related].slug}/?lang=${language}`; });
     document.querySelectorAll('.wordmark, .site-footer a:first-child').forEach(a => { a.href = `../../?lang=${language}`; });
+    document.dispatchEvent(new CustomEvent('project-language-change', { detail: language }));
   }
   document.getElementById('project-language').addEventListener('click', () => {
     language = language === 'zh' ? 'en' : 'zh';
