@@ -16,7 +16,7 @@
     const set = (id, value) => { const node = document.getElementById(id); if (node) node.textContent = value; };
     set('page-title', text.headline || text.title); set('page-summary', text.summary || text.sections[0][1]);
     set('skip', zh ? '跳至正文' : 'Skip to content');
-    set('page-kicker', project.blog ? (zh ? 'OPENQFT / 研究随笔' : 'OPENQFT / RESEARCH JOURNAL') : (zh ? '研究 / 项目笔记' : 'RESEARCH / PROJECT NOTES'));
+    set('page-kicker', project.kicker?.[language] || (project.blog ? (zh ? 'OPENQFT / 研究随笔' : 'OPENQFT / RESEARCH JOURNAL') : (zh ? '研究 / 项目笔记' : 'RESEARCH / PROJECT NOTES')));
     set('back-home', zh ? '所有项目' : 'All projects');
     document.getElementById('back-home').href = `../../?lang=${language}#research`;
     set('project-language', zh ? 'EN' : '中文');
