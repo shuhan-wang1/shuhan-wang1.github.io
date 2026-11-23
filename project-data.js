@@ -161,12 +161,16 @@ window.PROJECT_DATA = {
           "One inspiration is the history of particle physics. Observations arrived before a complete explanation. Researchers had to look for regularities, ask what those regularities implied, and decide which observation might change the picture. An explanation earned its value by helping them anticipate something they had not yet seen.\n\nWhat interests me is this movement between evidence and explanation. Each discovery changes the questions that become worth asking. Experience can do more than supply another answer; it can change how the next investigation begins."
         ],
         [
+          "A snapshot across models",
+          "The initial-evaluation snapshot now includes GPT-6.1 Terra (gpt-6.1-terra), GPT-6 Luna (gpt-6-luna), GPT-6.2 Sol (gpt-6.2-sol), and Claude Opus 5.5 (claude-opus-5-5). All scores below are expressed as a percentage of the theoretical maximum: a perfect score is 100%.\n\nComplete and Partial describe study coverage, not task success. The GPT-6.1 Terra and GPT-6 Luna main studies are complete. The GPT-6.2 Sol study is partial, and Claude Opus 5.5 currently has initial-evaluation results only. The initial batch is complete for all four models; the Partial label refers to the broader study.\n\nThe table separates initial evaluation from the experience comparison. They use different evaluation subsets, so a change between these columns should not be read as an improvement over time. Partial experience results include only completed matched comparisons; unfinished evaluations are omitted, not scored as zero. These are descriptive snapshots, rather than a definitive ranking."
+        ],
+        [
           "Collecting evidence is only part of the work",
-          "Choosing an experiment and making sense of its outcome are different abilities. An agent can collect observations while still missing a useful explanation. It can also settle on a plausible story too early and keep gathering evidence that fits it.\n\nThe Terra study motivates a closer look at this distinction. The comparison below places Terra alongside a diagnostic reference analysis. That reference also receives additional information, so the gap does not isolate a reasoning deficit. It is a prompt to ask which parts of an investigation need help, rather than a claim that every answer was already available to the agent."
+          "Choosing an experiment and making sense of its outcome are different abilities. An agent can collect observations while still missing a useful explanation. It can also settle on a plausible story too early and keep gathering evidence that fits it.\n\nThe GPT-6.1 Terra study motivates a closer look at this distinction. The comparison below places GPT-6.1 Terra alongside a diagnostic reference analysis. That reference also receives additional information, so the gap does not isolate a reasoning deficit. It is a prompt to ask which parts of an investigation need help, rather than a claim that every answer was already available to the agent."
         ],
         [
           "When experience helps—and when it gets in the way",
-          "A later investigation need not begin from an empty page. In the selected Terra comparison below, accumulated experience is associated with better performance. That is encouraging: something from an earlier investigation can be useful again.\n\nBut useful memory needs judgement. A good explanation can guide a new experiment; an untested assumption can guide it in the wrong direction. I want to understand how an agent can carry forward what it has learnt while staying willing to revise it. The figure is a descriptive preview, not a claim that memory helps every investigation."
+          "A later investigation need not begin from an empty page. In the selected GPT-6.1 Terra comparison below, accumulated experience is associated with better performance. That is encouraging: something from an earlier investigation can be useful again.\n\nBut useful memory needs judgement. A good explanation can guide a new experiment; an untested assumption can guide it in the wrong direction. I want to understand how an agent can carry forward what it has learnt while staying willing to revise it. The figure also includes the complete GPT-6 Luna study and available partial GPT-6.2 Sol results. Claude Opus 5.5 has no completed experience comparison to show yet. These descriptive means do not imply that memory helps every investigation."
         ],
         [
           "The question I want to keep asking",
@@ -174,7 +178,7 @@ window.PROJECT_DATA = {
         ],
         [
           "A research note, while the work develops",
-          "This is an intuition-led preview of independent, unpublished research. The figures are simplified views of selected Terra results, each on its own relative scale. They are not intended for quantitative comparison across figures. The experimental setup and full paper will be shared when the work is ready."
+          "This is an intuition-led preview of independent, unpublished research. Figures show selected descriptive means, with 100% marking the theoretical maximum for the measure in each figure. The diagnostic measure and the overall evaluation score are different measures. Study coverage is marked explicitly. Experimental mechanisms and the full paper remain private while the work develops."
         ]
       ]
     },
@@ -192,12 +196,16 @@ window.PROJECT_DATA = {
           "一个灵感来自粒子物理的发展史。观测往往先于完整的解释出现。研究者需要从中寻找规律，追问规律意味着什么，再决定什么样的新观测可能改变现有认识。一个解释的价值，体现在它能否帮助预见尚未观察到的东西。\n\n我感兴趣的是证据与解释之间的往返。每一次发现，都会改变接下来值得追问的问题。经验除了提供另一个答案，也可能改变下一次探索的起点。"
         ],
         [
+          "几种模型的结果快照",
+          "初始评测快照现在包括 GPT-6.1 Terra（gpt-6.1-terra）、GPT-6 Luna（gpt-6-luna）、GPT-6.2 Sol（gpt-6.2-sol）和 Claude Opus 5.5（claude-opus-5-5）。下方分数均按理论满分换算为百分比：满分为 100%。\n\nComplete 和 Partial 表示研究的完成状态，不表示任务成功率。GPT-6.1 Terra 和 GPT-6 Luna 的主线研究已完整；GPT-6.2 Sol 的研究仍是 partial，Claude Opus 5.5 目前只有初始评测结果。四个模型的初始批次均已完成；Partial 指的是更完整的研究尚未完成。\n\n表格将初始评测与经验对比分开。两者使用不同的评测子集，因此不能将跨列差值理解为随时间提升。Partial 的经验结果仅包含已完成的匹配比较；未完成评测暂不纳入，也不记为零分。这些是描述性的结果快照，不作为最终排名。"
+        ],
+        [
           "收集证据，只是工作的一部分",
-          "选择实验和理解结果，是两种不同的能力。智能体可能积累了许多观测，却仍然错过一个有用的解释；也可能过早相信一个看似合理的故事，此后只收集符合它的证据。\n\nTerra 的研究让我想进一步区分这些环节。下图将 Terra 与一个诊断性的参考分析进行对照。参考分析还获得了额外信息，因此差距不能单独归因于推理能力。它促使我追问探索中的哪些环节需要帮助，而不是断言答案早已完整地呈现在智能体面前。"
+          "选择实验和理解结果，是两种不同的能力。智能体可能积累了许多观测，却仍然错过一个有用的解释；也可能过早相信一个看似合理的故事，此后只收集符合它的证据。\n\nGPT-6.1 Terra 的研究让我想进一步区分这些环节。下图将 GPT-6.1 Terra 与一个诊断性的参考分析进行对照。参考分析还获得了额外信息，因此差距不能单独归因于推理能力。它促使我追问探索中的哪些环节需要帮助，而不是断言答案早已完整地呈现在智能体面前。"
         ],
         [
           "经验何时有用，又何时会妨碍探索？",
-          "后一次探索不必从空白开始。在下方选取的 Terra 对比中，积累经验时的表现更好。这是一个令人感兴趣的信号：之前的探索确实可能留下一些再次派得上用场的东西。\n\n但如何使用记忆，同样需要判断。好的解释可以指引下一次实验，未经检验的假设也可能把探索带偏。我想理解的是：智能体如何带着已有知识继续前进，同时保留修订它的意愿。这张图只是描述性的研究预览，并不意味着记忆会帮助每一次探索。"
+          "后一次探索不必从空白开始。在下方选取的 GPT-6.1 Terra 对比中，积累经验时的表现更好。这是一个令人感兴趣的信号：之前的探索确实可能留下一些再次派得上用场的东西。\n\n但如何使用记忆，同样需要判断。好的解释可以指引下一次实验，未经检验的假设也可能把探索带偏。我想理解的是：智能体如何带着已有知识继续前进，同时保留修订它的意愿。图中也加入了完整的 GPT-6 Luna 研究，以及 GPT-6.2 Sol 已完成的部分结果。Claude Opus 5.5 暂无已完成的经验对比。这些描述性均值并不意味着记忆会帮助每一次探索。"
         ],
         [
           "我想继续追问的问题",
@@ -205,7 +213,7 @@ window.PROJECT_DATA = {
         ],
         [
           "写在研究进行中",
-          "这是尚未发表的独立研究的一篇直觉笔记。配图是选取 Terra 结果制作的简化公开版本，每张图采用各自的相对尺度，不用于跨图定量比较。实验设计与完整论文将在研究准备好后公开。"
+          "这是尚未发表的独立研究的一篇直觉笔记。图中展示选取结果的描述性均值，100% 表示每张图中相应指标的理论满分。诊断指标与整体评测分数是不同指标。研究完成状态已分别标注。研究进行期间，具体实验机制与论文全文仍暂不公开。"
         ]
       ]
     },
@@ -234,7 +242,7 @@ window.PROJECT_DATA = {
         ],
         [
           "Research note",
-          "The full page shares the intuition behind OpenQFT and simplified views of selected Terra results."
+          "The full page shares the intuition behind OpenQFT and simplified views of selected model results, including GPT-6.1 Terra."
         ],
         [
           "Status",
@@ -248,7 +256,7 @@ window.PROJECT_DATA = {
         ],
         [
           "研究笔记",
-          "完整页面分享 OpenQFT 背后的直觉，以及选取 Terra 结果制作的简化公开图。"
+          "完整页面分享 OpenQFT 背后的直觉，以及选取模型结果（含 GPT-6.1 Terra）制作的简化公开图。"
         ],
         [
           "状态",
@@ -259,29 +267,118 @@ window.PROJECT_DATA = {
     "figures": [
       {
         "after": 2,
-        "src": "assets/openqft/terra-evidence.png",
+        "src": "assets/openqft/model-discovery.png",
+        "width": 2200,
+        "height": 1000,
         "en": {
-          "alt": "Relative bars for Terra and a reference analysis with additional information. The reference bar is higher.",
-          "caption": "Selected Terra result: interpreting observations. Bars show descriptive means on a relative scale. The reference analysis has additional information; this is a diagnostic comparison, not an equal-information baseline. Quantitative scales and experimental details are withheld in this public preview."
+          "alt": "Initial evaluation: GPT-6.1 Terra 23.9%, GPT-6 Luna 1.2%, GPT-6.2 Sol 40.0%, Claude Opus 5.5 43.6%. The theoretical maximum is 100%. Sol and Opus are marked Partial for overall study coverage.",
+          "caption": "Initial-evaluation means, as a percentage of the theoretical maximum (100%). All four initial batches are complete. Complete/Partial denotes coverage of the broader study; partial studies use hatched bars. This snapshot does not establish a definitive model ranking."
         },
         "zh": {
-          "alt": "Terra 与获得额外信息的参考分析的相对柱状图，参考分析的柱更高。",
-          "caption": "选取的 Terra 结果：理解观测。柱形以相对尺度展示描述性均值。参考分析具有额外信息；这是诊断性对照，并非信息条件相同的基线比较。此公开预览省略定量尺度与实验细节。"
+          "alt": "初始评测：GPT-6.1 Terra 23.9%、GPT-6 Luna 1.2%、GPT-6.2 Sol 40.0%、Claude Opus 5.5 43.6%，理论满分为 100%。Sol 和 Opus 的整体研究标注为 Partial。",
+          "caption": "初始评测均值，按理论满分（100%）换算。四个初始批次均已完成。Complete/Partial 表示整体研究覆盖情况，部分研究采用斜线柱形。此快照不构成最终模型排名。"
         }
       },
       {
         "after": 3,
-        "src": "assets/openqft/terra-experience.png",
+        "src": "assets/openqft/terra-evidence.png",
+        "width": 2200,
+        "height": 720,
         "en": {
-          "alt": "Relative bars for Terra without and with accumulated experience. The bar with experience is higher.",
-          "caption": "Selected Terra result: carrying experience forward. Descriptive means from matched conditions, shown on a separate relative scale. The version with accumulated experience performs better in this comparison. This preview omits quantitative scales and experimental details; it does not establish a general memory benefit."
+          "alt": "GPT-6.1 Terra: 9.2%; diagnostic reference with extra information: 54.6%. The theoretical maximum for this diagnostic measure is 100%.",
+          "caption": "GPT-6.1 Terra: selected diagnostic measure, with its theoretical maximum marked at 100%. The reference has additional information; this is not an equal-information baseline. This measure differs from the overall score in the other figures. Mechanism details remain private."
         },
         "zh": {
-          "alt": "Terra 未积累与积累经验时的相对柱状图，积累经验时的柱更高。",
-          "caption": "选取的 Terra 结果：让经验延续。对匹配条件下的描述性均值，使用本图独立的相对尺度展示。积累经验的版本在这组对比中表现更好。预览省略定量尺度和实验细节，不代表记忆具有普遍收益。"
+          "alt": "GPT-6.1 Terra：9.2%；具有额外信息的诊断参照：54.6%。此诊断指标的理论满分为 100%。",
+          "caption": "GPT-6.1 Terra 的选取诊断指标，理论满分标为 100%。参照具有额外信息，并非信息条件相同的基线。此指标与其他图中的整体分数不同；具体机制暂不公开。"
+        }
+      },
+      {
+        "after": 4,
+        "src": "assets/openqft/model-experience.png",
+        "width": 2200,
+        "height": 1100,
+        "en": {
+          "alt": "Without/with accumulated experience: GPT-6.1 Terra 30.4%/37.9%, GPT-6 Luna 0.5%/1.4%, GPT-6.2 Sol 39.5%/46.2%. Perfect score is 100%. Sol is Partial. Opus has no available experience comparison.",
+          "caption": "Experience comparison: descriptive means from completed matched comparisons, with 100% marking the theoretical maximum. GPT-6.1 Terra and GPT-6 Luna are complete; GPT-6.2 Sol is partial and covers a different subset. No Claude Opus 5.5 experience result is available. Missing evaluations are not zeros. These means do not establish a universal memory benefit."
+        },
+        "zh": {
+          "alt": "未积累/积累经验：GPT-6.1 Terra 30.4%/37.9%、GPT-6 Luna 0.5%/1.4%、GPT-6.2 Sol 39.5%/46.2%。满分为 100%；Sol 为 Partial，Opus 暂无经验对比。",
+          "caption": "经验对比：已完成匹配比较的描述性均值，100% 为理论满分。GPT-6.1 Terra 与 GPT-6 Luna 已完整；GPT-6.2 Sol 为部分结果，覆盖不同子集。Claude Opus 5.5 暂无经验对比结果。缺失评测不记为零；这些均值不代表记忆具有普遍收益。"
         }
       }
-    ]
+    ],
+    "resultsTable": {
+      "after": 2,
+      "en": {
+        "headers": [
+          "Model",
+          "Study coverage",
+          "Initial evaluation",
+          "Without experience",
+          "With experience"
+        ],
+        "caption": "Results snapshot · theoretical maximum = 100%",
+        "missing": "Not available",
+        "complete": "Complete",
+        "partial": "Partial"
+      },
+      "zh": {
+        "headers": [
+          "模型",
+          "研究状态",
+          "初始评测",
+          "未积累经验",
+          "积累经验"
+        ],
+        "caption": "结果快照 · 理论满分 = 100%",
+        "missing": "暂无结果",
+        "complete": "完整",
+        "partial": "部分结果"
+      },
+      "rows": [
+        {
+          "model": "GPT-6.1 Terra",
+          "identifier": "gpt-6.1-terra",
+          "status": "Complete",
+          "scores": [
+            23.9,
+            30.4,
+            37.9
+          ]
+        },
+        {
+          "model": "GPT-6 Luna",
+          "identifier": "gpt-6-luna",
+          "status": "Complete",
+          "scores": [
+            1.2,
+            0.5,
+            1.4
+          ]
+        },
+        {
+          "model": "GPT-6.2 Sol",
+          "identifier": "gpt-6.2-sol",
+          "status": "Partial",
+          "scores": [
+            40.0,
+            39.5,
+            46.2
+          ]
+        },
+        {
+          "model": "Claude Opus 5.5",
+          "identifier": "claude-opus-5-5",
+          "status": "Partial",
+          "scores": [
+            43.6,
+            null,
+            null
+          ]
+        }
+      ]
+    }
   },
   "temporal": {
     "en": {

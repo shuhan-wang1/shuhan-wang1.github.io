@@ -31,6 +31,14 @@
       }));
       document.querySelector(`.project-toc a[href="#section-${i}"]`).textContent = heading;
     });
+    if (project.resultsTable) {
+      const labels = project.resultsTable[language];
+      document.querySelector('.model-results caption').textContent = labels.caption;
+      document.querySelectorAll('.model-results thead th').forEach((th,i) => { th.textContent = labels.headers[i]; });
+      document.querySelectorAll('[data-study-status]').forEach(td => { td.textContent = labels[td.dataset.studyStatus]; });
+      document.querySelectorAll('[data-score-missing]').forEach(td => { td.textContent = labels.missing; });
+      document.querySelector('.results-table-wrap').setAttribute('aria-label', zh ? '模型结果' : 'Model results');
+    }
     document.querySelectorAll('[data-blog-figure]').forEach(figure => {
       const item = project.figures[Number(figure.dataset.blogFigure)][language];
       figure.querySelector('img').alt = item.alt;

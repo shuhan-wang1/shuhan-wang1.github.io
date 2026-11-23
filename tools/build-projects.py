@@ -11,9 +11,17 @@ for key,p in data.items():
  for i,(heading,text) in enumerate(en['sections']):
   paragraphs=''.join(f'<p>{e(part)}</p>' for part in text.split('\n\n'))
   sections+=f'<section id="section-{i}" class="project-section"><h2>{e(heading)}</h2><div class="section-prose">{paragraphs}</div></section>'
+  table=p.get('resultsTable')
+  if table and table['after']==i:
+   th=''.join(f'<th scope="col">{e(h)}</th>' for h in table['en']['headers'])
+   rows=''
+   for ri,row in enumerate(table['rows']):
+    cells=''.join(f'<td>{score:.1f}%</td>' if score is not None else f'<td data-score-missing>{e(table["en"]["missing"])}</td>' for score in row['scores'])
+    rows+=f'<tr><th scope="row">{e(row["model"])}<code>{e(row["identifier"])}</code></th><td data-study-status="{row["status"].lower()}">{e(row["status"])}</td>{cells}</tr>'
+   sections+=f'<div class="results-table-wrap" tabindex="0" role="region" aria-label="Model results"><table class="model-results"><caption>{e(table["en"]["caption"])}</caption><thead><tr>{th}</tr></thead><tbody>{rows}</tbody></table></div>'
   for fi,fig in enumerate(p.get('figures',[])):
    if fig['after']==i:
-    sections+=f'<figure class="blog-figure" data-blog-figure="{fi}"><a class="figure-zoom" href="../../{e(fig["src"])}" target="_blank" rel="noopener noreferrer"><img src="../../{e(fig["src"])}" alt="{e(fig["en"]["alt"])}" width="1920" height="680" loading="lazy"></a><figcaption>{e(fig["en"]["caption"])}</figcaption></figure>'
+    sections+=f'<figure class="blog-figure" data-blog-figure="{fi}"><a class="figure-zoom" href="../../{e(fig["src"])}" target="_blank" rel="noopener noreferrer"><img src="../../{e(fig["src"])}" alt="{e(fig["en"]["alt"])}" width="{fig.get("width",1920)}" height="{fig.get("height",680)}" loading="lazy"></a><figcaption>{e(fig["en"]["caption"])}</figcaption></figure>'
  resources=''.join(f'<a class="button button-primary" href="{e(url)}" target="_blank" rel="noopener noreferrer">{e(label)}</a>' for label,_,url in p['links'])
  toc=''.join(f'<a href="#section-{i}">{e(h)}</a>' for i,(h,_) in enumerate(en['sections']))
  flow=''.join(f'<li>{e(s)}</li>' for s in p['flow'][0])
