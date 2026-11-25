@@ -341,7 +341,7 @@
         ],
         [
           "Models investigate in different ways",
-          "The models also differ in how they work, apart from how well they score. One difference is when the thinking happens. GPT-6.2 Sol and GPT-6.1 Terra tend to run their experiments in a few large batches and do nearly all of their analysis after the last one, when nothing they work out can change what they try. Claude Opus 5.5 alternates: more than half of its analysis happens while it can still choose another experiment, and it varies the conditions of its experiments more widely.\n\nThe figure shows this as the share of analysis steps taken before the last experiment. A higher share is not a score: GPT-6 Luna and DeepSeek V4.1 Flash also analyse between experiments and score lowest, so alternating does not make an investigation succeed by itself. What I take from it is that the way an agent investigates can be measured alongside its result, and that an explanation worked out after the last experiment can no longer be tested by one."
+          "The models also differ in how they work, apart from how well they score. One difference is when the thinking happens. GPT-6.2 Sol and GPT-6.1 Terra tend to run their experiments in a few large batches and do most of their analysis after the last one, when nothing they work out can change what they try. Claude Opus 5.5 alternates: more than half of its analysis happens while it can still choose another experiment, and it varies the conditions of its experiments more widely.\n\nThe figure shows this as the share of analysis steps taken before the last experiment. A higher share is not a score: GPT-6 Luna and DeepSeek V4.1 Flash also analyse between experiments and score lowest, so alternating does not make an investigation succeed by itself. What I take from it is that the way an agent investigates can be measured alongside its result, and that an explanation worked out after the last experiment can no longer be tested by one."
         ],
         [
           "When experience helps—and when it gets in the way",
@@ -380,7 +380,7 @@
         ],
         [
           "模型的探索方式各不相同",
-          "除了分数高低，模型的工作方式也不一样。一个差别在于思考发生在什么时候。GPT-6.2 Sol 和 GPT-6.1 Terra 倾向于把实验分成几大批做完，几乎所有分析都放在最后一次实验之后，这时无论想明白什么，都已经无法改变要做的实验。Claude Opus 5.5 则是交替进行：它一半以上的分析发生在还能再选一个实验的时候，实验条件也变化得更多。\n\n下图用“最后一次实验之前完成的分析步骤占比”来表示这一点。占比高并不等于分数高：GPT-6 Luna 和 DeepSeek V4.1 Flash 同样会在实验之间做分析，分数却最低，可见光靠交替并不能让探索成功。我从中看到的是：智能体的探索方式可以和结果一起被测量；而在最后一次实验之后才想出的解释，已经没有实验可以检验它了。"
+          "除了分数高低，模型的工作方式也不一样。一个差别在于思考发生在什么时候。GPT-6.2 Sol 和 GPT-6.1 Terra 倾向于把实验分成几大批做完，大部分分析都放在最后一次实验之后，这时无论想明白什么，都已经无法改变要做的实验。Claude Opus 5.5 则是交替进行：它一半以上的分析发生在还能再选一个实验的时候，实验条件也变化得更多。\n\n下图用“最后一次实验之前完成的分析步骤占比”来表示这一点。占比高并不等于分数高：GPT-6 Luna 和 DeepSeek V4.1 Flash 同样会在实验之间做分析，分数却最低，可见光靠交替并不能让探索成功。我从中看到的是：智能体的探索方式可以和结果一起被测量；而在最后一次实验之后才想出的解释，已经没有实验可以检验它了。"
         ],
         [
           "经验何时有用，又何时会妨碍探索？",
@@ -478,11 +478,11 @@
         "width": 2200,
         "height": 1120,
         "en": {
-          "alt": "Share of analysis steps taken before the last experiment: GPT-6 Luna 38.3%, DeepSeek V4.1 Flash 51.8%, GPT-6.1 Terra 16.8%, GPT-6.2 Sol 9.4%, Claude Opus 5.5 59.0%.",
+          "alt": "Share of analysis steps taken before the last experiment: GPT-6 Luna 38.2%, DeepSeek V4.1 Flash 52.9%, GPT-6.1 Terra 16.8%, GPT-6.2 Sol 17.6%, Claude Opus 5.5 69.2%.",
           "caption": "When the thinking happens: of the steps a model spends on analysis, the share taken before its last experiment, averaged over investigations that start with no earlier experience. This describes how a model works; it is not a score."
         },
         "zh": {
-          "alt": "最后一次实验之前完成的分析步骤占比：GPT-6 Luna 38.3%、DeepSeek V4.1 Flash 51.8%、GPT-6.1 Terra 16.8%、GPT-6.2 Sol 9.4%、Claude Opus 5.5 59.0%。",
+          "alt": "最后一次实验之前完成的分析步骤占比：GPT-6 Luna 38.2%、DeepSeek V4.1 Flash 52.9%、GPT-6.1 Terra 16.8%、GPT-6.2 Sol 17.6%、Claude Opus 5.5 69.2%。",
           "caption": "思考发生在什么时候：在模型用于分析的步骤中，发生在最后一次实验之前的占比，对没有先前经验的探索取平均。它描述的是模型的工作方式，不是分数。"
         }
       },
